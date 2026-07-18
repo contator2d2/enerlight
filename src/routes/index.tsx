@@ -3,6 +3,7 @@ import { useMemo, useState, useEffect } from "react";
 import { ArrowRight, ArrowUpRight, Menu, Phone, Mail, Globe, MapPin, Play, Calendar, Factory, MapPinned, Lightbulb, Fuel, Building2, ShoppingCart, Store, Trophy, Landmark } from "lucide-react";
 
 import heroFacility from "@/assets/hero-facility.jpg";
+import enerlightLogo from "@/assets/enerlight-logo.png.asset.json";
 import concessionarias from "@/assets/concessionarias.jpg";
 import varejoImg from "@/assets/varejo.jpg";
 import industrialImg from "@/assets/industrial.jpg";
@@ -171,13 +172,8 @@ function Index() {
       {/* NAV */}
       <header className="absolute top-0 left-0 right-0 z-50">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 py-6 flex items-center justify-between gap-6">
-          <div className="flex items-center gap-2 shrink-0">
-            <div className="flex flex-col">
-              <span className="text-2xl font-black tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-                <span className="text-primary">e</span>nerlight
-              </span>
-              <span className="text-[0.55rem] tracking-[0.25em] text-muted-foreground uppercase">Soluções em iluminação</span>
-            </div>
+          <div className="flex items-center shrink-0">
+            <img src={enerlightLogo.url} alt="Enerlight" width={180} height={48} className="h-10 lg:h-12 w-auto" />
           </div>
           <nav className="hidden lg:flex items-center gap-8 text-[0.7rem] tracking-[0.2em] uppercase font-medium">
             {["Soluções","Projetos","Produtos","Homologações","Universidade","Empresa","Contato"].map(i => (
@@ -344,11 +340,8 @@ function Index() {
       {/* FOOTER */}
       <footer className="px-6 lg:px-12 py-10 border-t border-border">
         <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-8 items-start">
-          <div className="flex flex-col">
-            <span className="text-2xl font-black tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-              <span className="text-primary">e</span>nerlight
-            </span>
-            <span className="text-[0.55rem] tracking-[0.25em] text-muted-foreground uppercase">Soluções em iluminação</span>
+          <div className="flex items-center">
+            <img src={enerlightLogo.url} alt="Enerlight" width={180} height={48} className="h-10 w-auto" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-xs text-muted-foreground">
             <div className="flex items-start gap-3"><Phone className="w-4 h-4 text-primary shrink-0 mt-0.5" /><span>17 99779-7102</span></div>
