@@ -3,7 +3,7 @@ import { useMemo, useState, useEffect } from "react";
 import { ArrowRight, ArrowUpRight, Menu, Phone, Mail, Globe, MapPin, Play, Calendar, Factory, MapPinned, Lightbulb, Fuel, Building2, ShoppingCart, Store, Trophy, Landmark } from "lucide-react";
 
 import heroFacility from "@/assets/hero-facility.jpg";
-import enerlightLogo from "@/assets/enerlight-logo.png.asset.json";
+const enerlightLogo = { url: "/enerlight-logo.png" };
 import concessionarias from "@/assets/concessionarias.jpg";
 import varejoImg from "@/assets/varejo.jpg";
 import industrialImg from "@/assets/industrial.jpg";
