@@ -95,27 +95,6 @@ function ShuffledSegments() {
   );
 }
 
-function useInView<T extends HTMLElement>(threshold = 0.2) {
-  const ref = (typeof window !== "undefined" ? require : null) && null;
-  const [inView, setInView] = useState(false);
-  const nodeRef = (function () {
-    return (node: T | null) => {
-      if (!node) return;
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setInView(true);
-            obs.disconnect();
-          }
-        },
-        { threshold }
-      );
-      obs.observe(node);
-    };
-  })();
-  return { ref: nodeRef, inView };
-}
-
 function QuemSomos() {
   const [visible, setVisible] = useState(false);
   const containerRef = (node: HTMLElement | null) => {
@@ -139,61 +118,51 @@ function QuemSomos() {
     { icon: Lightbulb, big: "TECNOLOGIA", label: "LED", desc: "soluções eficientes, duráveis e sustentáveis" },
   ];
 
-  const anim = (delay: number, from: "left" | "right" | "up" = "up") => {
-    const base = "transition-all duration-700 ease-out";
-    const hidden =
-      from === "left"
-        ? "opacity-0 -translate-x-8"
-        : from === "right"
-        ? "opacity-0 translate-x-8"
-        : "opacity-0 translate-y-8";
+  const cls = (from: "left" | "up") => {
+    const hidden = from === "left" ? "opacity-0 -translate-x-8" : "opacity-0 translate-y-8";
     const shown = "opacity-100 translate-x-0 translate-y-0";
-    return {
-      className: `${base} ${visible ? shown : hidden}`,
-      style: { transitionDelay: visible ? `${delay}ms` : "0ms" },
-    };
+    return `transition-all duration-700 ease-out ${visible ? shown : hidden}`;
   };
+  const delay = (ms: number) => ({ transitionDelay: visible ? `${ms}ms` : "0ms" });
 
   return (
     <section ref={containerRef as never} className="py-20 lg:py-28 px-6 lg:px-12">
       <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-16">
         <div className="space-y-6">
-          <div {...anim(0, "left")}><ModuleNumber n="07" /></div>
-          <p {...anim(80, "left")} className={`text-[0.7rem] tracking-[0.25em] uppercase text-muted-foreground ${anim(80, "left").className}`}>Quem somos</p>
-          <h2 {...anim(160, "left")} className={`text-4xl lg:text-5xl font-black uppercase leading-[1] ${anim(160, "left").className}`}>
+          <div className={cls("left")} style={delay(0)}><ModuleNumber n="07" /></div>
+          <p className={`text-[0.7rem] tracking-[0.25em] uppercase text-muted-foreground ${cls("left")}`} style={delay(80)}>Quem somos</p>
+          <h2 className={`text-4xl lg:text-5xl font-black uppercase leading-[1] ${cls("left")}`} style={delay(160)}>
             Especialistas<br />em Soluções<br />de <span className="text-primary">Iluminação</span>
           </h2>
-          <p {...anim(260, "left")} className={`text-sm text-muted-foreground max-w-md leading-relaxed ${anim(260, "left").className}`}>
+          <p className={`text-sm text-muted-foreground max-w-md leading-relaxed ${cls("left")}`} style={delay(260)}>
             Unimos tecnologia, engenharia e atendimento consultivo para entregar alta performance,
             eficiência e confiabilidade em cada projeto.
           </p>
-          <div {...anim(360, "left")} className={`pt-4 ${anim(360, "left").className}`}>
+          <div className={`pt-4 ${cls("left")}`} style={delay(360)}>
             <YellowButton>Conhecer a Enerlight</YellowButton>
           </div>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 lg:pt-4">
-          {stats.map((s, i) => {
-            const a = anim(200 + i * 140, "up");
-            return (
-              <div
-                key={i}
-                style={a.style}
-                className={`flex flex-col items-center text-center gap-3 ${a.className}`}
-              >
-                <div className="w-12 h-12 flex items-center justify-center text-primary">
-                  <s.icon className="w-9 h-9" strokeWidth={1.2} />
-                </div>
-                <div className="text-2xl lg:text-[1.75rem] font-black uppercase leading-tight">{s.big}</div>
-                <div className="text-[0.65rem] tracking-[0.2em] uppercase text-muted-foreground -mt-2">{s.label}</div>
-                <p className="text-[0.7rem] text-muted-foreground/80 leading-relaxed max-w-[140px]">{s.desc}</p>
+          {stats.map((s, i) => (
+            <div
+              key={i}
+              style={delay(200 + i * 140)}
+              className={`flex flex-col items-center text-center gap-3 ${cls("up")}`}
+            >
+              <div className="w-12 h-12 flex items-center justify-center text-primary">
+                <s.icon className="w-9 h-9" strokeWidth={1.2} />
               </div>
-            );
-          })}
+              <div className="text-2xl lg:text-[1.75rem] font-black uppercase leading-tight">{s.big}</div>
+              <div className="text-[0.65rem] tracking-[0.2em] uppercase text-muted-foreground -mt-2">{s.label}</div>
+              <p className="text-[0.7rem] text-muted-foreground/80 leading-relaxed max-w-[140px]">{s.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
+
 
 
 function Index() {
