@@ -352,7 +352,7 @@ function Index() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-xs text-muted-foreground">
             <div className="flex items-start gap-3"><Phone className="w-4 h-4 text-primary shrink-0 mt-0.5" /><span>17 99779-7102</span></div>
-            <div className="flex items-start gap-3"><Mail className="w-4 h-4 text-primary shrink-0 mt-0.5" /><span>gecom02@enerlight.com.br</span></div>
+            <div className="flex items-start gap-3"><Mail className="w-4 h-4 text-primary shrink-0 mt-0.5" /><span>sac@enerlight.com.br</span></div>
             <div className="flex items-start gap-3"><Globe className="w-4 h-4 text-primary shrink-0 mt-0.5" /><span>www.enerlight.com.br</span></div>
             <div className="flex items-start gap-3"><MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" /><span>Av. Joaquim Gomes Camacho, 185<br />São José do Rio Preto - SP</span></div>
           </div>
