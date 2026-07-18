@@ -172,13 +172,8 @@ function Index() {
       {/* NAV */}
       <header className="absolute top-0 left-0 right-0 z-50">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 py-6 flex items-center justify-between gap-6">
-          <div className="flex items-center gap-2 shrink-0">
-            <div className="flex flex-col">
-              <span className="text-2xl font-black tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-                <span className="text-primary">e</span>nerlight
-              </span>
-              <span className="text-[0.55rem] tracking-[0.25em] text-muted-foreground uppercase">Soluções em iluminação</span>
-            </div>
+          <div className="flex items-center shrink-0">
+            <img src={enerlightLogo.url} alt="Enerlight" width={180} height={48} className="h-10 lg:h-12 w-auto" />
           </div>
           <nav className="hidden lg:flex items-center gap-8 text-[0.7rem] tracking-[0.2em] uppercase font-medium">
             {["Soluções","Projetos","Produtos","Homologações","Universidade","Empresa","Contato"].map(i => (
