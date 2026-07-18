@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useMemo, useState, useEffect } from "react";
 import { ArrowRight, ArrowUpRight, Menu, Phone, Mail, Globe, MapPin, Play, Calendar, Factory, MapPinned, Lightbulb, Fuel, Building2, ShoppingCart, Store, Trophy, Landmark } from "lucide-react";
 
 import heroFacility from "@/assets/hero-facility.jpg";
@@ -95,45 +96,9 @@ function Index() {
         </div>
       </section>
 
-      {/* 02 — CONCESSIONÁRIAS */}
-      <section className="relative">
-        <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr]">
-          <div className="px-6 lg:px-12 py-14 lg:py-24 flex flex-col justify-center gap-6 bg-background">
-            <ModuleNumber n="02" />
-            <h2 className="text-3xl lg:text-4xl font-black uppercase leading-tight">Concessionárias</h2>
-            <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
-              Projetos luminotécnicos para experiências que valorizam veículos e marcas.
-            </p>
-            <div className="pt-2"><SaibaMais /></div>
-          </div>
-          <div className="relative h-[380px] lg:h-[560px]">
-            <img src={concessionarias} alt="Concessionária iluminada" loading="lazy" width={1600} height={700} className="w-full h-full object-cover" />
-          </div>
-        </div>
-      </section>
-
-      {/* 03-06 — GRID 4 SEGMENTOS */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-        {[
-          { n: "03", title: "Varejo\ne Franquias", desc: "Luz que valoriza produtos e melhora a experiência de compra.", img: varejoImg },
-          { n: "04", title: "Industrial\ne Logística", desc: "Projetado para produtividade contínua.", img: industrialImg },
-          { n: "05", title: "Postos de\nCombustível", desc: "Soluções completas para segurança, eficiência e percepção de valor.", img: postosImg },
-          { n: "06", title: "Iluminação\nPública", desc: "Mais segurança, economia e qualidade de vida para cidades.", img: publicaImg },
-        ].map((c) => (
-          <div key={c.n} className="relative group h-[400px] lg:h-[440px] overflow-hidden">
-            <img src={c.img} alt={c.title} loading="lazy" width={800} height={700} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-700" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/10" />
-            <div className="relative h-full flex flex-col justify-between p-6 lg:p-8">
-              <ModuleNumber n={c.n} />
-              <div className="space-y-4">
-                <h3 className="text-xl lg:text-2xl font-black uppercase leading-tight whitespace-pre-line">{c.title}</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed max-w-[240px]">{c.desc}</p>
-                <SaibaMais />
-              </div>
-            </div>
-          </div>
-        ))}
-      </section>
+      {/* 02-06 — SEGMENTOS (ordem embaralhada a cada carregamento) */}
+      <ShuffledSegments />
+      
 
       {/* 07 — QUEM SOMOS */}
       <section className="py-20 lg:py-28 px-6 lg:px-12">
