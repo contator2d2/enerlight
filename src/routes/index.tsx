@@ -95,6 +95,76 @@ function ShuffledSegments() {
   );
 }
 
+function QuemSomos() {
+  const [visible, setVisible] = useState(false);
+  const containerRef = (node: HTMLElement | null) => {
+    if (!node || visible) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    obs.observe(node);
+  };
+
+  const stats = [
+    { icon: Calendar, big: "+15", label: "ANOS", desc: "de experiência no mercado de iluminação" },
+    { icon: Factory, big: "+1.000", label: "PROJETOS", desc: "entregues em todo o território nacional" },
+    { icon: MapPinned, big: "ATUAÇÃO", label: "NACIONAL", desc: "presença em todos os estados" },
+    { icon: Lightbulb, big: "TECNOLOGIA", label: "LED", desc: "soluções eficientes, duráveis e sustentáveis" },
+  ];
+
+  const cls = (from: "left" | "up") => {
+    const hidden = from === "left" ? "opacity-0 -translate-x-8" : "opacity-0 translate-y-8";
+    const shown = "opacity-100 translate-x-0 translate-y-0";
+    return `transition-all duration-700 ease-out ${visible ? shown : hidden}`;
+  };
+  const delay = (ms: number) => ({ transitionDelay: visible ? `${ms}ms` : "0ms" });
+
+  return (
+    <section ref={containerRef as never} className="py-20 lg:py-28 px-6 lg:px-12">
+      <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-16">
+        <div className="space-y-6">
+          <div className={cls("left")} style={delay(0)}><ModuleNumber n="07" /></div>
+          <p className={`text-[0.7rem] tracking-[0.25em] uppercase text-muted-foreground ${cls("left")}`} style={delay(80)}>Quem somos</p>
+          <h2 className={`text-4xl lg:text-5xl font-black uppercase leading-[1] ${cls("left")}`} style={delay(160)}>
+            Especialistas<br />em Soluções<br />de <span className="text-primary">Iluminação</span>
+          </h2>
+          <p className={`text-sm text-muted-foreground max-w-md leading-relaxed ${cls("left")}`} style={delay(260)}>
+            Unimos tecnologia, engenharia e atendimento consultivo para entregar alta performance,
+            eficiência e confiabilidade em cada projeto.
+          </p>
+          <div className={`pt-4 ${cls("left")}`} style={delay(360)}>
+            <YellowButton>Conhecer a Enerlight</YellowButton>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 lg:pt-4">
+          {stats.map((s, i) => (
+            <div
+              key={i}
+              style={delay(200 + i * 140)}
+              className={`flex flex-col items-center text-center gap-3 ${cls("up")}`}
+            >
+              <div className="w-12 h-12 flex items-center justify-center text-primary">
+                <s.icon className="w-9 h-9" strokeWidth={1.2} />
+              </div>
+              <div className="text-2xl lg:text-[1.75rem] font-black uppercase leading-tight">{s.big}</div>
+              <div className="text-[0.65rem] tracking-[0.2em] uppercase text-muted-foreground -mt-2">{s.label}</div>
+              <p className="text-[0.7rem] text-muted-foreground/80 leading-relaxed max-w-[140px]">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -159,39 +229,8 @@ function Index() {
       
 
       {/* 07 — QUEM SOMOS */}
-      <section className="py-20 lg:py-28 px-6 lg:px-12">
-        <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-16">
-          <div className="space-y-6">
-            <ModuleNumber n="07" />
-            <p className="text-[0.7rem] tracking-[0.25em] uppercase text-muted-foreground">Quem somos</p>
-            <h2 className="text-4xl lg:text-5xl font-black uppercase leading-[1]">
-              Especialistas<br />em Soluções<br />de <span className="text-primary">Iluminação</span>
-            </h2>
-            <p className="text-sm text-muted-foreground max-w-md leading-relaxed">
-              Unimos tecnologia, engenharia e atendimento consultivo para entregar alta performance,
-              eficiência e confiabilidade em cada projeto.
-            </p>
-            <div className="pt-4"><YellowButton>Conhecer a Enerlight</YellowButton></div>
-          </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 lg:pt-4">
-            {[
-              { icon: Calendar, big: "+15", label: "ANOS", desc: "de experiência no mercado de iluminação" },
-              { icon: Factory, big: "+1.000", label: "PROJETOS", desc: "entregues em todo o território nacional" },
-              { icon: MapPinned, big: "ATUAÇÃO", label: "NACIONAL", desc: "presença em todos os estados" },
-              { icon: Lightbulb, big: "TECNOLOGIA", label: "LED", desc: "soluções eficientes, duráveis e sustentáveis" },
-            ].map((s, i) => (
-              <div key={i} className="flex flex-col items-center text-center gap-3">
-                <div className="w-12 h-12 flex items-center justify-center text-primary">
-                  <s.icon className="w-9 h-9" strokeWidth={1.2} />
-                </div>
-                <div className="text-2xl lg:text-[1.75rem] font-black uppercase leading-tight">{s.big}</div>
-                <div className="text-[0.65rem] tracking-[0.2em] uppercase text-muted-foreground -mt-2">{s.label}</div>
-                <p className="text-[0.7rem] text-muted-foreground/80 leading-relaxed max-w-[140px]">{s.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <QuemSomos />
+
 
       {/* 08 — PROJETOS PERSONALIZADOS */}
       <section className="px-6 lg:px-12 pb-20">
