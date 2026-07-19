@@ -313,56 +313,9 @@ function HeroSlider() {
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      {/* NAV */}
-      <header className="absolute top-0 left-0 right-0 z-50">
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 py-6 flex items-center justify-between gap-6">
-          <div className="flex items-center shrink-0">
-            <img src={enerlightLogo.url} alt="Enerlight" width={180} height={48} className="h-10 lg:h-12 w-auto" />
-          </div>
-          <nav className="hidden lg:flex items-center gap-8 text-[0.7rem] tracking-[0.2em] uppercase font-medium">
-            {["Soluções","Projetos","Produtos","Homologações","Universidade","Empresa","Contato"].map(i => (
-              <a key={i} href="#" className="hover:text-primary transition">{i}</a>
-            ))}
-          </nav>
-          <div className="flex items-center gap-4 shrink-0">
-            <button className="hidden md:inline-flex items-center gap-3 bg-primary text-primary-foreground px-5 py-3 text-[0.7rem] font-semibold tracking-[0.2em] uppercase hover:bg-primary/90 transition">
-              Solicitar Projeto <ArrowRight className="w-3 h-3" />
-            </button>
-            <button className="text-foreground"><Menu className="w-6 h-6" /></button>
-          </div>
-        </div>
-      </header>
+      {/* 01 — HERO + NAV */}
+      <HeroSlider />
 
-      {/* 01 — HERO */}
-      <section className="relative min-h-screen flex items-center pt-28 pb-16">
-        <div className="absolute inset-0">
-          <img src={heroFacility} alt="Fábrica Enerlight iluminada à noite" className="w-full h-full object-cover" width={1600} height={900} />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50" />
-        </div>
-        <div className="relative max-w-[1600px] mx-auto px-6 lg:px-12 w-full grid grid-cols-[auto_1fr] gap-8">
-          <div className="hidden lg:flex flex-col items-center gap-3 pt-4">
-            <span className="text-xs text-primary tracking-[0.3em] font-medium">01</span>
-            <div className="w-px h-32 bg-gradient-to-b from-primary to-transparent" />
-            <div className="flex flex-col gap-2">
-              {[0,1,2,3].map(i => <span key={i} className="w-1 h-1 rounded-full bg-muted-foreground/40" />)}
-            </div>
-          </div>
-          <div className="max-w-2xl">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.95] uppercase">
-              Iluminamos<br />
-              o que move<br />
-              o <span className="text-primary">Brasil</span>
-            </h1>
-            <p className="mt-8 text-sm md:text-base text-muted-foreground max-w-md leading-relaxed">
-              Soluções em iluminação para<br />operações que não podem parar.
-            </p>
-            <div className="mt-10">
-              <YellowButton>Conhecer a Enerlight</YellowButton>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* 02-06 — SEGMENTOS (ordem embaralhada a cada carregamento) */}
       <ShuffledSegments />
