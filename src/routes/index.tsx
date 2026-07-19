@@ -236,7 +236,7 @@ function HeroSlider() {
         )}
       </header>
 
-      <section className="relative min-h-[100svh] flex items-center pt-24 pb-16 overflow-hidden">
+      <section className="relative min-h-[100svh] flex items-start lg:items-center pt-20 sm:pt-24 pb-16 overflow-hidden">
         {HERO_SLIDES.map((s, i) => (
           <div
             key={i}
