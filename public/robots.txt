@@ -1,0 +1,7 @@
+# robots.txt — Enerlight
+# design by Thiago Nicodemos - R2D2
+
+User-agent: *
+Allow: /
+
+Sitemap: https://enerlight.lovable.app/sitemap.xml
