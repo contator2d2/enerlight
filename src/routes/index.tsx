@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState, useEffect } from "react";
-import { ArrowRight, ArrowUpRight, Menu, Phone, Mail, Globe, MapPin, Play, Calendar, Factory, MapPinned, Lightbulb, Fuel, Building2, ShoppingCart, Store, Trophy, Landmark } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Menu, X, Phone, Mail, Globe, MapPin, Play, Calendar, Factory, MapPinned, Lightbulb, Fuel, Building2, ShoppingCart, Store, Trophy, Landmark } from "lucide-react";
+
 
 import heroFacility from "@/assets/hero-facility.jpg";
 const enerlightLogo = { url: "/enerlight-logo.png" };
@@ -164,61 +165,157 @@ function QuemSomos() {
   );
 }
 
+const HERO_SLIDES = [
+  {
+    img: heroFacility,
+    kicker: "Iluminação industrial",
+    title: ["Iluminamos", "o que move", "o "],
+    highlight: "Brasil",
+    desc: "Soluções em iluminação para operações que não podem parar.",
+  },
+  {
+    img: fabricaImg,
+    kicker: "Tecnologia LED",
+    title: ["Alta performance", "para ambientes", "de "],
+    highlight: "produção",
+    desc: "Projetos luminotécnicos desenvolvidos para produtividade contínua.",
+  },
+  {
+    img: cidadeNoite,
+    kicker: "Iluminação pública",
+    title: ["Cidades mais", "seguras e", "mais "],
+    highlight: "eficientes",
+    desc: "Mais economia, segurança e qualidade de vida para as pessoas.",
+  },
+];
 
+function HeroSlider() {
+  const [idx, setIdx] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const total = HERO_SLIDES.length;
 
-function Index() {
+  useEffect(() => {
+    const t = setInterval(() => setIdx(i => (i + 1) % total), 6000);
+    return () => clearInterval(t);
+  }, [total]);
+
+  const current = HERO_SLIDES[idx];
+
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      {/* NAV */}
+    <>
       <header className="absolute top-0 left-0 right-0 z-50">
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 py-6 flex items-center justify-between gap-6">
-          <div className="flex items-center shrink-0">
-            <img src={enerlightLogo.url} alt="Enerlight" width={180} height={48} className="h-10 lg:h-12 w-auto" />
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 py-4 lg:py-6 flex items-center justify-between gap-4">
+          <div className="flex items-center shrink-0 min-w-0">
+            <img src={enerlightLogo.url} alt="Enerlight" width={180} height={48} className="h-8 sm:h-10 lg:h-12 w-auto" />
           </div>
           <nav className="hidden lg:flex items-center gap-8 text-[0.7rem] tracking-[0.2em] uppercase font-medium">
             {["Soluções","Projetos","Produtos","Homologações","Universidade","Empresa","Contato"].map(i => (
               <a key={i} href="#" className="hover:text-primary transition">{i}</a>
             ))}
           </nav>
-          <div className="flex items-center gap-4 shrink-0">
+          <div className="flex items-center gap-3 shrink-0">
             <button className="hidden md:inline-flex items-center gap-3 bg-primary text-primary-foreground px-5 py-3 text-[0.7rem] font-semibold tracking-[0.2em] uppercase hover:bg-primary/90 transition">
               Solicitar Projeto <ArrowRight className="w-3 h-3" />
             </button>
-            <button className="text-foreground"><Menu className="w-6 h-6" /></button>
+            <button
+              className="lg:hidden text-foreground p-2 -mr-2"
+              aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+              onClick={() => setMenuOpen(v => !v)}
+            >
+              {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
+        {menuOpen && (
+          <div className="lg:hidden bg-background/95 backdrop-blur border-t border-border animate-fade-in">
+            <nav className="px-6 py-6 flex flex-col gap-4 text-xs tracking-[0.2em] uppercase font-medium">
+              {["Soluções","Projetos","Produtos","Homologações","Universidade","Empresa","Contato"].map(i => (
+                <a key={i} href="#" className="py-1 hover:text-primary transition" onClick={() => setMenuOpen(false)}>{i}</a>
+              ))}
+              <button className="mt-2 inline-flex items-center justify-center gap-3 bg-primary text-primary-foreground px-5 py-3 text-[0.7rem] font-semibold tracking-[0.2em] uppercase">
+                Solicitar Projeto <ArrowRight className="w-3 h-3" />
+              </button>
+            </nav>
+          </div>
+        )}
       </header>
 
-      {/* 01 — HERO */}
-      <section className="relative min-h-screen flex items-center pt-28 pb-16">
-        <div className="absolute inset-0">
-          <img src={heroFacility} alt="Fábrica Enerlight iluminada à noite" className="w-full h-full object-cover" width={1600} height={900} />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50" />
-        </div>
-        <div className="relative max-w-[1600px] mx-auto px-6 lg:px-12 w-full grid grid-cols-[auto_1fr] gap-8">
-          <div className="hidden lg:flex flex-col items-center gap-3 pt-4">
+      <section className="relative min-h-[100svh] flex items-center pt-24 pb-16 overflow-hidden">
+        {HERO_SLIDES.map((s, i) => (
+          <div
+            key={i}
+            className={`absolute inset-0 transition-opacity duration-1000 ${i === idx ? "opacity-100" : "opacity-0"}`}
+            aria-hidden={i !== idx}
+          >
+            <img
+              src={s.img}
+              alt=""
+              className={`w-full h-full object-cover transition-transform ease-out ${i === idx ? "scale-110 duration-[8000ms]" : "scale-100 duration-1000"}`}
+              width={1600}
+              height={900}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50" />
+          </div>
+        ))}
+
+        <div className="relative max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 w-full grid grid-cols-[auto_1fr] gap-4 sm:gap-8">
+          <div className="flex flex-col items-center gap-3 pt-4">
             <span className="text-xs text-primary tracking-[0.3em] font-medium">01</span>
-            <div className="w-px h-32 bg-gradient-to-b from-primary to-transparent" />
-            <div className="flex flex-col gap-2">
-              {[0,1,2,3].map(i => <span key={i} className="w-1 h-1 rounded-full bg-muted-foreground/40" />)}
+            <div className="w-px h-16 sm:h-24 lg:h-32 bg-gradient-to-b from-primary to-transparent" />
+            <div className="flex flex-col gap-3 pt-2">
+              {HERO_SLIDES.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setIdx(i)}
+                  aria-label={`Ir para slide ${i + 1}`}
+                  className="group relative flex items-center justify-center h-4 w-4"
+                >
+                  <span
+                    className={`block rounded-full transition-all duration-500 ${
+                      i === idx ? "w-3 h-3 bg-primary" : "w-1.5 h-1.5 bg-muted-foreground/40 group-hover:bg-muted-foreground"
+                    }`}
+                  />
+                  {i === idx && (
+                    <span className="absolute inset-0 rounded-full border border-primary/50 animate-ping" />
+                  )}
+                </button>
+              ))}
             </div>
           </div>
-          <div className="max-w-2xl">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[0.95] uppercase">
-              Iluminamos<br />
-              o que move<br />
-              o <span className="text-primary">Brasil</span>
+
+          <div key={idx} className="max-w-2xl animate-fade-in">
+            <span className="inline-block text-[0.65rem] sm:text-xs tracking-[0.3em] uppercase text-primary font-medium mb-4 sm:mb-6">
+              {current.kicker}
+            </span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[0.95] uppercase">
+              {current.title[0]}<br />
+              {current.title[1]}<br />
+              {current.title[2]}<span className="text-primary">{current.highlight}</span>
             </h1>
-            <p className="mt-8 text-sm md:text-base text-muted-foreground max-w-md leading-relaxed">
-              Soluções em iluminação para<br />operações que não podem parar.
+            <p className="mt-6 sm:mt-8 text-sm md:text-base text-muted-foreground max-w-md leading-relaxed">
+              {current.desc}
             </p>
-            <div className="mt-10">
+            <div className="mt-8 sm:mt-10">
               <YellowButton>Conhecer a Enerlight</YellowButton>
             </div>
           </div>
         </div>
       </section>
+    </>
+  );
+}
+
+
+
+
+
+function Index() {
+  return (
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      {/* 01 — HERO + NAV */}
+      <HeroSlider />
+
 
       {/* 02-06 — SEGMENTOS (ordem embaralhada a cada carregamento) */}
       <ShuffledSegments />
