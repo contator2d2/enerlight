@@ -236,7 +236,7 @@ function HeroSlider() {
         )}
       </header>
 
-      <section className="relative min-h-[100svh] flex items-center pt-24 pb-16 overflow-hidden">
+      <section className="relative min-h-[100svh] flex items-start lg:items-center pt-20 sm:pt-24 pb-16 overflow-hidden">
         {HERO_SLIDES.map((s, i) => (
           <div
             key={i}
@@ -287,7 +287,7 @@ function HeroSlider() {
             <span className="inline-block text-[0.65rem] sm:text-xs tracking-[0.3em] uppercase text-primary font-medium mb-4 sm:mb-6">
               {current.kicker}
             </span>
-            <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl font-black leading-[0.95] uppercase">
+            <h1 className="text-6xl sm:text-7xl md:text-6xl lg:text-7xl font-black leading-[0.9] uppercase">
               {current.title[0]}<br />
               {current.title[1]}<br />
               {current.title[2]}<span className="text-primary">{current.highlight}</span>
