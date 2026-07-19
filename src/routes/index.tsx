@@ -101,14 +101,9 @@ function ShuffledSegments() {
 function QuemSomos() {
   const [visible, setVisible] = useState(false);
   const containerRef = (node: HTMLElement | null) => {
-    if (!node || visible) return;
+    if (!node) return;
     const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          obs.disconnect();
-        }
-      },
+      ([entry]) => setVisible(entry.isIntersecting),
       { threshold: 0.15 }
     );
     obs.observe(node);
