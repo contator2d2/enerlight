@@ -236,64 +236,7 @@ function HeroSlider() {
         )}
       </header>
 
-      {/* MOBILE HERO — texto em cima, imagem 4:3 embaixo */}
-      <section className="lg:hidden pt-20">
-        <div className="px-4 pt-6 pb-8">
-          <div key={`m-${idx}`} className="animate-fade-in">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-xs text-primary tracking-[0.3em] font-medium">01</span>
-              <span className="text-[0.65rem] tracking-[0.3em] uppercase text-primary font-medium">
-                {current.kicker}
-              </span>
-            </div>
-            <h1 className="text-[2.5rem] font-black leading-[0.95] uppercase">
-              {current.title[0]} {current.title[1]} {current.title[2]}
-              <span className="text-primary">{current.highlight}</span>
-            </h1>
-            <p className="mt-5 text-sm text-muted-foreground leading-relaxed">
-              {current.desc}
-            </p>
-            <div className="mt-6">
-              <YellowButton>Conhecer a Enerlight</YellowButton>
-            </div>
-          </div>
-        </div>
-        <div className="relative w-full aspect-[4/3] overflow-hidden">
-          {HERO_SLIDES.map((s, i) => (
-            <img
-              key={i}
-              src={s.img}
-              alt=""
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${i === idx ? "opacity-100" : "opacity-0"}`}
-              width={1200}
-              height={900}
-            />
-          ))}
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-10">
-            {HERO_SLIDES.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setIdx(i)}
-                aria-label={`Ir para slide ${i + 1}`}
-                className="group relative flex items-center justify-center h-4 w-4"
-              >
-                <span
-                  className={`block rounded-full transition-all duration-500 ${
-                    i === idx ? "w-3 h-3 bg-primary" : "w-1.5 h-1.5 bg-white/50 group-hover:bg-white"
-                  }`}
-                />
-                {i === idx && (
-                  <span className="absolute inset-0 rounded-full border border-primary/50 animate-ping" />
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* DESKTOP HERO */}
-      <section className="hidden lg:flex relative min-h-[100svh] items-center pt-24 pb-16 overflow-hidden">
+      <section className="relative min-h-[100svh] flex items-center pt-24 pb-16 overflow-hidden">
         {HERO_SLIDES.map((s, i) => (
           <div
             key={i}
@@ -307,8 +250,11 @@ function HeroSlider() {
               width={1600}
               height={900}
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50" />
+            {/* Mobile: gradient de cima (escuro) para baixo (transparente) */}
+            <div className="absolute inset-0 lg:hidden bg-gradient-to-b from-background via-background/70 to-transparent" />
+            {/* Desktop: gradient horizontal */}
+            <div className="absolute inset-0 hidden lg:block bg-gradient-to-r from-background via-background/85 to-background/30" />
+            <div className="absolute inset-0 hidden lg:block bg-gradient-to-t from-background via-transparent to-background/50" />
           </div>
         ))}
 
@@ -341,7 +287,7 @@ function HeroSlider() {
             <span className="inline-block text-[0.65rem] sm:text-xs tracking-[0.3em] uppercase text-primary font-medium mb-4 sm:mb-6">
               {current.kicker}
             </span>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[0.95] uppercase">
+            <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl font-black leading-[0.95] uppercase">
               {current.title[0]}<br />
               {current.title[1]}<br />
               {current.title[2]}<span className="text-primary">{current.highlight}</span>
@@ -355,6 +301,7 @@ function HeroSlider() {
           </div>
         </div>
       </section>
+
 
     </>
   );
