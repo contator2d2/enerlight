@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState, useEffect } from "react";
-import { ArrowRight, ArrowUpRight, Menu, X, Phone, Mail, Globe, MapPin, Play, Calendar, Factory, MapPinned, Lightbulb, Fuel, Building2, ShoppingCart, Store, Trophy, Landmark } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Menu, X, Phone, Mail, Globe, MapPin, Play, Calendar, Factory, MapPinned, Lightbulb, Fuel, Building2, ShoppingCart, Store, Trophy, Landmark, Instagram, MessageCircle } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 
 
@@ -448,7 +448,7 @@ function Index() {
 
       {/* FOOTER */}
       <footer className="px-6 lg:px-12 py-10 border-t border-border">
-        <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-8 items-start">
+        <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[220px_1fr_auto] gap-8 items-start">
           <div className="flex items-center">
             <img src={enerlightLogo.url} alt="Enerlight" width={180} height={48} className="h-10 w-auto" />
           </div>
@@ -457,6 +457,29 @@ function Index() {
             <div className="flex items-start gap-3"><Mail className="w-4 h-4 text-primary shrink-0 mt-0.5" /><span>sac@enerlight.com.br</span></div>
             <div className="flex items-start gap-3"><Globe className="w-4 h-4 text-primary shrink-0 mt-0.5" /><span>www.enerlight.com.br</span></div>
             <div className="flex items-start gap-3"><MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" /><span>Av. Joaquim Gomes Camacho, 185<br />São José do Rio Preto - SP</span></div>
+          </div>
+          <div className="flex flex-col gap-3 lg:items-end">
+            <span className="text-[0.65rem] tracking-[0.25em] uppercase text-muted-foreground/70">Redes sociais</span>
+            <div className="flex items-center gap-3">
+              <a
+                href="https://wa.me/5517997797102"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                className="w-10 h-10 flex items-center justify-center rounded-full border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition"
+              >
+                <MessageCircle className="w-4 h-4" />
+              </a>
+              <a
+                href="https://instagram.com/enerlight"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="w-10 h-10 flex items-center justify-center rounded-full border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+            </div>
           </div>
         </div>
       </footer>
