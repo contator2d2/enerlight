@@ -501,6 +501,9 @@ function Index() {
             </div>
           </div>
         </div>
+        <div className="max-w-[1600px] mx-auto mt-8 pt-6 border-t border-border/50 text-center text-[0.7rem] tracking-[0.2em] uppercase text-muted-foreground/70">
+          design by <span className="text-primary">TNS R2D2</span>
+        </div>
       </footer>
     </div>
   );
