@@ -15,7 +15,57 @@ import heatmapImg from "@/assets/heatmap.jpg";
 import fabricaImg from "@/assets/fabrica.jpg";
 import cidadeNoite from "@/assets/cidade-noite.jpg";
 
+/*!
+ * Enerlight — site institucional
+ * design by Thiago Nicodemos - R2D2
+ */
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Enerlight — Iluminação LED de alta performance para o Brasil" },
+      { name: "description", content: "Enerlight: soluções em iluminação LED para concessionárias, varejo, indústria, postos de combustível e iluminação pública. Projetos luminotécnicos, eficiência energética e alta durabilidade." },
+      { name: "keywords", content: "iluminação LED, luminárias industriais, iluminação pública, iluminação para postos, iluminação para varejo, projeto luminotécnico, eficiência energética, Enerlight" },
+      { name: "author", content: "Thiago Nicodemos - R2D2" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
+      { name: "googlebot", content: "index, follow" },
+      { name: "theme-color", content: "#0a0a0a" },
+      { property: "og:title", content: "Enerlight — Iluminação LED de alta performance" },
+      { property: "og:description", content: "Soluções LED para concessionárias, varejo, indústria, postos e iluminação pública." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://enerlight.lovable.app/" },
+      { property: "og:site_name", content: "Enerlight" },
+      { property: "og:locale", content: "pt_BR" },
+      { property: "og:image", content: "https://enerlight.lovable.app/enerlight-logo.png" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Enerlight — Iluminação LED de alta performance" },
+      { name: "twitter:description", content: "Soluções LED para concessionárias, varejo, indústria, postos e iluminação pública." },
+      { name: "twitter:image", content: "https://enerlight.lovable.app/enerlight-logo.png" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://enerlight.lovable.app/" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Enerlight",
+          url: "https://enerlight.lovable.app/",
+          logo: "https://enerlight.lovable.app/enerlight-logo.png",
+          description: "Fabricante brasileira de soluções em iluminação LED de alta performance.",
+          contactPoint: {
+            "@type": "ContactPoint",
+            email: "sac@enerlight.com.br",
+            contactType: "customer service",
+            areaServed: "BR",
+            availableLanguage: ["Portuguese"],
+          },
+          sameAs: [],
+        }),
+      },
+    ],
+  }),
   component: Index,
 });
 
@@ -501,9 +551,7 @@ function Index() {
             </div>
           </div>
         </div>
-        <div className="max-w-[1600px] mx-auto mt-8 pt-6 border-t border-border/50 text-center text-[0.7rem] tracking-[0.2em] uppercase text-muted-foreground/70">
-          design by <span className="text-primary">TNS R2D2</span>
-        </div>
+        {/* design by Thiago Nicodemos - R2D2 */}
       </footer>
     </div>
   );
