@@ -477,9 +477,9 @@ function Index() {
             <div className="flex items-start justify-center lg:justify-start gap-3"><Globe className="w-4 h-4 text-primary shrink-0 mt-0.5" /><span>www.enerlight.com.br</span></div>
             <div className="flex items-start justify-center lg:justify-start gap-3"><MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" /><span>Av. Joaquim Gomes Camacho, 185<br />São José do Rio Preto - SP</span></div>
           </div>
-          <div className="flex flex-col gap-3 lg:items-end">
+          <div className="flex flex-col gap-3 items-center lg:items-end">
             <span className="text-[0.65rem] tracking-[0.25em] uppercase text-muted-foreground/70">Redes sociais</span>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center gap-3">
               <a
                 href="https://wa.me/5517997797102"
                 target="_blank"
