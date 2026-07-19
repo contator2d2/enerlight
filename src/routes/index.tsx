@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState, useEffect } from "react";
 import { ArrowRight, ArrowUpRight, Menu, X, Phone, Mail, Globe, MapPin, Play, Calendar, Factory, MapPinned, Lightbulb, Fuel, Building2, ShoppingCart, Store, Trophy, Landmark } from "lucide-react";
+import { Reveal } from "@/hooks/use-reveal";
 
 
 import heroFacility from "@/assets/hero-facility.jpg";
@@ -100,14 +101,9 @@ function ShuffledSegments() {
 function QuemSomos() {
   const [visible, setVisible] = useState(false);
   const containerRef = (node: HTMLElement | null) => {
-    if (!node || visible) return;
+    if (!node) return;
     const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          obs.disconnect();
-        }
-      },
+      ([entry]) => setVisible(entry.isIntersecting),
       { threshold: 0.15 }
     );
     obs.observe(node);
@@ -240,7 +236,64 @@ function HeroSlider() {
         )}
       </header>
 
-      <section className="relative min-h-[100svh] flex items-center pt-24 pb-16 overflow-hidden">
+      {/* MOBILE HERO — texto em cima, imagem 4:3 embaixo */}
+      <section className="lg:hidden pt-20">
+        <div className="px-4 pt-6 pb-8">
+          <div key={`m-${idx}`} className="animate-fade-in">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-xs text-primary tracking-[0.3em] font-medium">01</span>
+              <span className="text-[0.65rem] tracking-[0.3em] uppercase text-primary font-medium">
+                {current.kicker}
+              </span>
+            </div>
+            <h1 className="text-[2.5rem] font-black leading-[0.95] uppercase">
+              {current.title[0]} {current.title[1]} {current.title[2]}
+              <span className="text-primary">{current.highlight}</span>
+            </h1>
+            <p className="mt-5 text-sm text-muted-foreground leading-relaxed">
+              {current.desc}
+            </p>
+            <div className="mt-6">
+              <YellowButton>Conhecer a Enerlight</YellowButton>
+            </div>
+          </div>
+        </div>
+        <div className="relative w-full aspect-[4/3] overflow-hidden">
+          {HERO_SLIDES.map((s, i) => (
+            <img
+              key={i}
+              src={s.img}
+              alt=""
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${i === idx ? "opacity-100" : "opacity-0"}`}
+              width={1200}
+              height={900}
+            />
+          ))}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-10">
+            {HERO_SLIDES.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIdx(i)}
+                aria-label={`Ir para slide ${i + 1}`}
+                className="group relative flex items-center justify-center h-4 w-4"
+              >
+                <span
+                  className={`block rounded-full transition-all duration-500 ${
+                    i === idx ? "w-3 h-3 bg-primary" : "w-1.5 h-1.5 bg-white/50 group-hover:bg-white"
+                  }`}
+                />
+                {i === idx && (
+                  <span className="absolute inset-0 rounded-full border border-primary/50 animate-ping" />
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* DESKTOP HERO */}
+      <section className="hidden lg:flex relative min-h-[100svh] items-center pt-24 pb-16 overflow-hidden">
         {HERO_SLIDES.map((s, i) => (
           <div
             key={i}
@@ -302,6 +355,7 @@ function HeroSlider() {
           </div>
         </div>
       </section>
+
     </>
   );
 }
@@ -318,7 +372,7 @@ function Index() {
 
 
       {/* 02-06 — SEGMENTOS (ordem embaralhada a cada carregamento) */}
-      <ShuffledSegments />
+      <Reveal><ShuffledSegments /></Reveal>
       
 
       {/* 07 — QUEM SOMOS */}
@@ -326,6 +380,7 @@ function Index() {
 
 
       {/* 08 — PROJETOS PERSONALIZADOS */}
+      <Reveal>
       <section className="px-6 lg:px-12 pb-20">
         <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-10 items-center">
           <div className="space-y-6">
@@ -344,8 +399,10 @@ function Index() {
           </div>
         </div>
       </section>
+      </Reveal>
 
       {/* 09 — MARCAS */}
+      <Reveal>
       <section className="border-y border-border py-14 px-6 lg:px-12">
         <div className="max-w-[1600px] mx-auto flex flex-col lg:flex-row lg:items-center gap-8">
           <div className="flex items-center gap-4 shrink-0">
@@ -364,8 +421,10 @@ function Index() {
           </button>
         </div>
       </section>
+      </Reveal>
 
       {/* 10 — NOSSA FÁBRICA */}
+      <Reveal>
       <section className="relative">
         <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr]">
           <div className="px-6 lg:px-12 py-14 lg:py-24 flex flex-col justify-center gap-6">
@@ -390,8 +449,10 @@ function Index() {
           </div>
         </div>
       </section>
+      </Reveal>
 
       {/* 11 — LINHAS DE SOLUÇÕES */}
+      <Reveal>
       <section className="py-16 px-6 lg:px-12 border-t border-border">
         <div className="max-w-[1600px] mx-auto">
           <div className="flex items-center gap-4 mb-10">
@@ -416,8 +477,10 @@ function Index() {
           </div>
         </div>
       </section>
+      </Reveal>
 
       {/* CTA FINAL */}
+      <Reveal>
       <section className="relative py-24 px-6 lg:px-12">
         <div className="absolute inset-0">
           <img src={cidadeNoite} alt="Cidade iluminada" loading="lazy" width={1800} height={512} className="w-full h-full object-cover" />
@@ -433,6 +496,8 @@ function Index() {
           </div>
         </div>
       </section>
+      </Reveal>
+
 
       {/* FOOTER */}
       <footer className="px-6 lg:px-12 py-10 border-t border-border">
