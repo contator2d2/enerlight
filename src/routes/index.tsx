@@ -377,7 +377,7 @@ function Index() {
 
 
       {/* 02-06 — SEGMENTOS (ordem embaralhada a cada carregamento) */}
-      <ShuffledSegments />
+      <Reveal><ShuffledSegments /></Reveal>
       
 
       {/* 07 — QUEM SOMOS */}
@@ -385,6 +385,7 @@ function Index() {
 
 
       {/* 08 — PROJETOS PERSONALIZADOS */}
+      <Reveal>
       <section className="px-6 lg:px-12 pb-20">
         <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-10 items-center">
           <div className="space-y-6">
@@ -403,8 +404,10 @@ function Index() {
           </div>
         </div>
       </section>
+      </Reveal>
 
       {/* 09 — MARCAS */}
+      <Reveal>
       <section className="border-y border-border py-14 px-6 lg:px-12">
         <div className="max-w-[1600px] mx-auto flex flex-col lg:flex-row lg:items-center gap-8">
           <div className="flex items-center gap-4 shrink-0">
@@ -423,8 +426,10 @@ function Index() {
           </button>
         </div>
       </section>
+      </Reveal>
 
       {/* 10 — NOSSA FÁBRICA */}
+      <Reveal>
       <section className="relative">
         <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr]">
           <div className="px-6 lg:px-12 py-14 lg:py-24 flex flex-col justify-center gap-6">
@@ -449,8 +454,10 @@ function Index() {
           </div>
         </div>
       </section>
+      </Reveal>
 
       {/* 11 — LINHAS DE SOLUÇÕES */}
+      <Reveal>
       <section className="py-16 px-6 lg:px-12 border-t border-border">
         <div className="max-w-[1600px] mx-auto">
           <div className="flex items-center gap-4 mb-10">
@@ -475,8 +482,10 @@ function Index() {
           </div>
         </div>
       </section>
+      </Reveal>
 
       {/* CTA FINAL */}
+      <Reveal>
       <section className="relative py-24 px-6 lg:px-12">
         <div className="absolute inset-0">
           <img src={cidadeNoite} alt="Cidade iluminada" loading="lazy" width={1800} height={512} className="w-full h-full object-cover" />
@@ -492,6 +501,8 @@ function Index() {
           </div>
         </div>
       </section>
+      </Reveal>
+
 
       {/* FOOTER */}
       <footer className="px-6 lg:px-12 py-10 border-t border-border">
