@@ -65,28 +65,47 @@ function ShuffledSegments() {
 
   return (
     <>
-      <section className="relative">
-        <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr]">
-          <div className="px-6 lg:px-12 py-14 lg:py-24 flex flex-col justify-center gap-6 bg-background">
+      {/* Mobile: grid unificado com todos os 5 itens iguais */}
+      <section className="lg:hidden grid grid-cols-1 md:grid-cols-2">
+        {order.map((c, i) => (
+          <div key={c.key} className="relative group h-[400px] overflow-hidden">
+            <img src={c.img} alt={c.title} loading="lazy" width={800} height={700} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/10" />
+            <div className="relative h-full flex flex-col justify-between p-6">
+              <ModuleNumber n={String(i + 2).padStart(2, "0")} />
+              <div className="space-y-4">
+                <h3 className="text-xl font-black uppercase leading-tight whitespace-pre-line">{c.titleGrid}</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed max-w-[240px]">{c.desc}</p>
+                <SaibaMais />
+              </div>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      {/* Desktop: banner destaque + grid de 4 */}
+      <section className="relative hidden lg:block">
+        <div className="grid grid-cols-[380px_1fr]">
+          <div className="px-12 py-24 flex flex-col justify-center gap-6 bg-background">
             <ModuleNumber n="02" />
-            <h2 className="text-3xl lg:text-4xl font-black uppercase leading-tight">{featured.title}</h2>
+            <h2 className="text-4xl font-black uppercase leading-tight">{featured.title}</h2>
             <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">{featured.desc}</p>
             <div className="pt-2"><SaibaMais /></div>
           </div>
-          <div className="relative h-[380px] lg:h-[560px]">
+          <div className="relative h-[560px]">
             <img key={featured.key} src={featured.img} alt={featured.title} loading="lazy" width={1600} height={700} className="w-full h-full object-cover" />
           </div>
         </div>
       </section>
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      <section className="hidden lg:grid grid-cols-4">
         {rest.map((c, i) => (
-          <div key={c.key} className="relative group h-[400px] lg:h-[440px] overflow-hidden">
+          <div key={c.key} className="relative group h-[440px] overflow-hidden">
             <img src={c.img} alt={c.title} loading="lazy" width={800} height={700} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/10" />
-            <div className="relative h-full flex flex-col justify-between p-6 lg:p-8">
+            <div className="relative h-full flex flex-col justify-between p-8">
               <ModuleNumber n={String(i + 3).padStart(2, "0")} />
               <div className="space-y-4">
-                <h3 className="text-xl lg:text-2xl font-black uppercase leading-tight whitespace-pre-line">{c.titleGrid}</h3>
+                <h3 className="text-2xl font-black uppercase leading-tight whitespace-pre-line">{c.titleGrid}</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed max-w-[240px]">{c.desc}</p>
                 <SaibaMais />
               </div>
