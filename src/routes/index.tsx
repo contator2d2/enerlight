@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState, useEffect } from "react";
-import { ArrowRight, ArrowUpRight, Menu, X, Phone, Mail, Globe, MapPin, Play, Calendar, Factory, MapPinned, Lightbulb, Fuel, Building2, ShoppingCart, Store, Trophy, Landmark, Instagram, MessageCircle } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Menu, X, Phone, Mail, Globe, MapPin, Play, Calendar, Factory, MapPinned, Lightbulb, Fuel, Building2, ShoppingCart, Store, Trophy, Landmark, Instagram, MessageCircle, ScanSearch, Box, FileText, BarChart3 } from "lucide-react";
 import { Reveal } from "@/hooks/use-reveal";
 
 
@@ -12,6 +12,7 @@ import industrialImg from "@/assets/industrial.jpg";
 import postosImg from "@/assets/postos.jpg";
 import publicaImg from "@/assets/publica.jpg";
 import heatmapImg from "@/assets/heatmap.jpg";
+import plantaBaixa from "@/assets/planta-baixa.jpg";
 import fabricaImg from "@/assets/fabrica.jpg";
 import cidadeNoite from "@/assets/cidade-noite.jpg";
 
@@ -392,25 +393,95 @@ function Index() {
       <QuemSomos />
 
 
-      {/* 08 — PROJETOS PERSONALIZADOS */}
+      {/* 08 — PROJETO LUMINOTÉCNICO */}
       <Reveal>
-      <section className="bg-white text-slate-900 px-6 lg:px-12 py-20">
-        <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-10 items-center">
-          <div className="space-y-6">
-            <p className="text-[0.7rem] tracking-[0.25em] uppercase text-primary font-semibold">Projetos Personalizados</p>
-            <h2 className="text-3xl lg:text-5xl font-black leading-[1.05] text-slate-900">
+      <section className="bg-[#0a1628] text-white px-6 lg:px-12 py-20 lg:py-28">
+        <div className="max-w-[1600px] mx-auto">
+          {/* Cabeçalho */}
+          <div className="max-w-2xl mb-14">
+            <p className="text-[0.7rem] tracking-[0.3em] uppercase text-primary font-semibold mb-5">Projeto Luminotécnico</p>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black leading-[1.02] uppercase tracking-tight">
               Inteligência que<br />projeta <span className="text-primary">resultados.</span>
             </h2>
-            <p className="text-sm text-slate-600 max-w-sm leading-relaxed">
-              Desenvolvemos projetos luminotécnicos com simulações precisas para garantir o melhor
-              resultado para cada ambiente.
+            <p className="text-sm md:text-base text-white/70 mt-6 max-w-md leading-relaxed">
+              Desenvolvemos projetos luminotécnicos personalizados com simulações precisas para garantir o melhor <span className="text-white font-semibold">desempenho, conforto e eficiência.</span>
             </p>
-            <a href="#" className="inline-flex items-center gap-3 text-xs font-semibold tracking-[0.2em] uppercase text-slate-900 border-b border-primary pb-1 hover:text-primary transition">
-              Saiba mais <ArrowRight className="w-3 h-3" />
-            </a>
           </div>
-          <div className="relative">
-            <img src={heatmapImg} alt="Simulação luminotécnica" loading="lazy" width={1400} height={700} className="w-full h-auto object-contain" />
+
+          {/* Grid dos dois painéis */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+            {/* 01 — PLANTA BAIXA */}
+            <div className="space-y-5">
+              <div>
+                <p className="text-xs text-white/50 tracking-widest mb-1">01</p>
+                <h3 className="text-sm font-bold tracking-[0.25em] uppercase">Planta Baixa</h3>
+              </div>
+              <div className="rounded-md overflow-hidden border border-white/10 bg-[#050d1a]">
+                <img src={plantaBaixa} alt="Planta baixa luminotécnica" loading="lazy" width={1408} height={912} className="w-full h-auto object-cover" />
+              </div>
+              {/* Legenda + Resumo */}
+              <div className="rounded-md border border-white/10 bg-white/[0.02] p-5 grid grid-cols-1 md:grid-cols-[190px_1fr] gap-5">
+                <div>
+                  <p className="text-[0.65rem] tracking-[0.25em] uppercase text-primary font-semibold mb-3">Legenda</p>
+                  <ul className="space-y-2 text-[0.7rem] text-white/70">
+                    <li className="flex items-center gap-3"><span className="w-2.5 h-2.5 rounded-full bg-white inline-block" /> LUMINÁRIA HIGH BAY</li>
+                    <li className="flex items-center gap-3"><span className="w-4 h-[3px] bg-white inline-block" /> LUMINÁRIA LINEAR</li>
+                    <li className="flex items-center gap-3"><span className="w-2 h-2 rounded-full border border-white inline-block" /> LUMINÁRIA DOWNLIGHT</li>
+                    <li className="flex items-center gap-3"><span className="w-3 h-3 inline-block" style={{ background: "repeating-linear-gradient(45deg,#fff,#fff 1px,transparent 1px,transparent 3px)" }} /> ÁREA TÉCNICA / APOIO</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="text-[0.65rem] tracking-[0.25em] uppercase text-primary font-semibold mb-3">Resumo do Projeto</p>
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                    {[
+                      { l: "Área total", v: "1.260 m²" },
+                      { l: "Pé-direito", v: "12,0 m" },
+                      { l: "Iluminância média", v: "312 lux" },
+                      { l: "Uniformidade", v: "0,72" },
+                      { l: "UGR médio", v: "< 19" },
+                    ].map(k => (
+                      <div key={k.l}>
+                        <p className="text-[0.55rem] tracking-[0.2em] uppercase text-white/40 mb-1">{k.l}</p>
+                        <p className="text-base font-bold">{k.v}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 02 — MAPA DE ILUMINÂNCIA */}
+            <div className="space-y-5">
+              <div>
+                <p className="text-xs text-white/50 tracking-widest mb-1">02</p>
+                <h3 className="text-sm font-bold tracking-[0.25em] uppercase">Mapa de Iluminância</h3>
+              </div>
+              <div className="rounded-md overflow-hidden border border-white/10 bg-[#050d1a]">
+                <img src={heatmapImg} alt="Mapa de iluminância — simulação" loading="lazy" width={1400} height={700} className="w-full h-auto object-cover" />
+              </div>
+              {/* Sobre o mapa + ícones */}
+              <div className="rounded-md border border-white/10 bg-white/[0.02] p-5 grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <p className="text-[0.65rem] tracking-[0.25em] uppercase text-primary font-semibold mb-3">Sobre o Mapa</p>
+                  <p className="text-[0.75rem] text-white/70 leading-relaxed">
+                    O mapa de iluminância representa os níveis de luz (lux) calculados em todo o ambiente. As cores indicam a distribuição da luz, garantindo que cada área atenda aos níveis recomendados para conforto visual, segurança e eficiência energética.
+                  </p>
+                </div>
+                <ul className="space-y-3 text-[0.7rem] tracking-[0.2em] uppercase text-white/80">
+                  {[
+                    { i: ScanSearch, l: "Análise do ambiente" },
+                    { i: Box, l: "Simulação luminotécnica" },
+                    { i: FileText, l: "Solução personalizada" },
+                    { i: BarChart3, l: "Resultado comprovado" },
+                  ].map(({ i: Ico, l }) => (
+                    <li key={l} className="flex items-center gap-3">
+                      <span className="w-9 h-9 rounded-md border border-white/15 flex items-center justify-center text-primary shrink-0"><Ico className="w-4 h-4" /></span>
+                      {l}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
