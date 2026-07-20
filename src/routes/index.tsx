@@ -69,8 +69,8 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-function ModuleNumber({ n }: { n: string }) {
-  return <span className="text-xs text-primary tracking-[0.3em] font-medium">{n}</span>;
+function ModuleNumber(_: { n: string }) {
+  return null;
 }
 
 function YellowButton({ children }: { children: React.ReactNode }) {
