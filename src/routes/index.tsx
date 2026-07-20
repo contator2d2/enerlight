@@ -114,42 +114,54 @@ function ShuffledSegments() {
   
 
   return (
-    <>
-      {/* Mobile: grid unificado com todos os 5 itens iguais */}
-      <section className="lg:hidden grid grid-cols-1 md:grid-cols-2">
-        {order.map((c, i) => (
-          <div key={c.key} className="relative group h-[400px] overflow-hidden">
-            <img src={c.img} alt={c.title} loading="lazy" width={800} height={700} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-700" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/10" />
-            <div className="relative h-full flex flex-col justify-between p-6">
-              <ModuleNumber n={String(i + 2).padStart(2, "0")} />
-              <div className="space-y-4">
-                <h3 className="text-xl font-black uppercase leading-tight whitespace-pre-line">{c.titleGrid}</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed max-w-[240px]">{c.desc}</p>
-                <SaibaMais />
-              </div>
-            </div>
-          </div>
-        ))}
-      </section>
+    <section className="px-6 lg:px-12 py-14 lg:py-20">
+      <div className="max-w-[1600px] mx-auto">
+        {/* Header da seção */}
+        <div className="flex items-center justify-between mb-6 lg:mb-10">
+          <p className="text-[0.7rem] tracking-[0.25em] uppercase text-muted-foreground">Nossos Mercados</p>
+          <a href="#" className="hidden sm:inline-flex items-center gap-2 text-[0.7rem] tracking-[0.2em] uppercase text-muted-foreground hover:text-primary transition">
+            Veja todas as soluções <ArrowRight className="w-3 h-3" />
+          </a>
+        </div>
 
-      {/* Desktop: grid 3 colunas x 2 linhas */}
-      <section className="hidden lg:grid grid-cols-3">
-        {order.map((c) => (
-          <div key={c.key} className="relative group h-[440px] overflow-hidden">
-            <img src={c.img} alt={c.title} loading="lazy" width={800} height={700} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-700" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/10" />
-            <div className="relative h-full flex flex-col justify-end p-8">
-              <div className="space-y-4">
-                <h3 className="text-2xl font-black uppercase leading-tight whitespace-pre-line">{c.titleGrid}</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed max-w-[240px]">{c.desc}</p>
-                <SaibaMais />
-              </div>
-            </div>
-          </div>
-        ))}
-      </section>
-    </>
+        {/* Mobile: 1-2 colunas */}
+        <div className="lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {order.map((c) => (
+            <SegmentCard key={c.key} c={c} />
+          ))}
+        </div>
+
+        {/* Desktop: 5 colunas em linha única */}
+        <div className="hidden lg:grid grid-cols-5 gap-4">
+          {order.map((c) => (
+            <SegmentCard key={c.key} c={c} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SegmentCard({ c }: { c: (typeof SEGMENTS)[number] }) {
+  return (
+    <a href="#" className="relative group block h-[360px] lg:h-[420px] overflow-hidden rounded-md">
+      <img
+        src={c.img}
+        alt={c.title}
+        loading="lazy"
+        width={600}
+        height={800}
+        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-700"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
+      <div className="relative h-full flex flex-col justify-end p-5 lg:p-6">
+        <h3 className="text-base lg:text-lg font-black uppercase leading-tight tracking-wide">{c.title}</h3>
+        <p className="mt-2 text-[0.72rem] text-muted-foreground leading-relaxed line-clamp-3">{c.desc}</p>
+        <span className="mt-4 inline-flex items-center justify-center w-8 h-8 rounded-full border border-primary/50 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition">
+          <ArrowRight className="w-4 h-4" />
+        </span>
+      </div>
+    </a>
   );
 }
 
