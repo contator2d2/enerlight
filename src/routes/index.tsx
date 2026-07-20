@@ -394,18 +394,20 @@ function Index() {
 
       {/* 08 — PROJETOS PERSONALIZADOS */}
       <Reveal>
-      <section className="px-6 lg:px-12 pb-20">
-        <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-10 items-center">
+      <section className="bg-white text-slate-900 px-6 lg:px-12 py-20">
+        <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-10 items-center">
           <div className="space-y-6">
-            <ModuleNumber n="08" />
-            <h2 className="text-3xl lg:text-4xl font-black uppercase leading-tight">
-              Projetos<br />Personalizados
+            <p className="text-[0.7rem] tracking-[0.25em] uppercase text-primary font-semibold">Projetos Personalizados</p>
+            <h2 className="text-3xl lg:text-5xl font-black leading-[1.05] text-slate-900">
+              Inteligência que<br />projeta <span className="text-primary">resultados.</span>
             </h2>
-            <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
+            <p className="text-sm text-slate-600 max-w-sm leading-relaxed">
               Desenvolvemos projetos luminotécnicos com simulações precisas para garantir o melhor
               resultado para cada ambiente.
             </p>
-            <div className="pt-2"><YellowButton>Saiba mais</YellowButton></div>
+            <a href="#" className="inline-flex items-center gap-3 text-xs font-semibold tracking-[0.2em] uppercase text-slate-900 border-b border-primary pb-1 hover:text-primary transition">
+              Saiba mais <ArrowRight className="w-3 h-3" />
+            </a>
           </div>
           <div className="relative">
             <img src={heatmapImg} alt="Simulação luminotécnica" loading="lazy" width={1400} height={700} className="w-full h-auto object-contain" />
@@ -413,6 +415,7 @@ function Index() {
         </div>
       </section>
       </Reveal>
+
 
       {/* 09 — MARCAS */}
       <Reveal>
