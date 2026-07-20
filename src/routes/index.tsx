@@ -12,6 +12,7 @@ import industrialImg from "@/assets/industrial.jpg";
 import postosImg from "@/assets/postos.jpg";
 import publicaImg from "@/assets/publica.jpg";
 import heatmapImg from "@/assets/heatmap.jpg";
+import plantaBaixa from "@/assets/planta-baixa.jpg";
 import fabricaImg from "@/assets/fabrica.jpg";
 import cidadeNoite from "@/assets/cidade-noite.jpg";
 
