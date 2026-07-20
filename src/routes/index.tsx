@@ -111,7 +111,7 @@ function ShuffledSegments() {
   // Ordem determinística no SSR; embaralha após hidratação para evitar mismatch.
   const [order, setOrder] = useState<typeof SEGMENTS>(SEGMENTS);
   useEffect(() => { setOrder(shuffle(SEGMENTS)); }, []);
-  const [featured, ...rest] = order;
+  
 
   return (
     <>
