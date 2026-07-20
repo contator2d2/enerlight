@@ -69,8 +69,8 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-function ModuleNumber({ n }: { n: string }) {
-  return <span className="text-xs text-primary tracking-[0.3em] font-medium">{n}</span>;
+function ModuleNumber(_: { n: string }) {
+  return null;
 }
 
 function YellowButton({ children }: { children: React.ReactNode }) {
@@ -329,7 +329,6 @@ function HeroSlider() {
 
         <div className="relative max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 w-full grid grid-cols-[auto_1fr] gap-4 sm:gap-8">
           <div className="flex flex-col items-center gap-3 pt-4">
-            <span className="text-xs text-primary tracking-[0.3em] font-medium">01</span>
             <div className="w-px h-16 sm:h-24 lg:h-32 bg-gradient-to-b from-primary to-transparent" />
             <div className="flex flex-col gap-3 pt-2">
               {HERO_SLIDES.map((_, i) => (
